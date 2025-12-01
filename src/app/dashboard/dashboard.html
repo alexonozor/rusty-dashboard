@@ -1,0 +1,44 @@
+<mat-toolbar class="mat-toolbar top-0 sticky z-10 space-x-2 shadow-sm border-b border-gray-200! dark:border-slate-700 bg-white dark:bg-slate-900 h-16 px-4">
+    <button matIconButton (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Dashboard</span>
+    <span class="flex-1"></span>
+    <!-- <button matIconButton>
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button matIconButton>
+      <mat-icon>share</mat-icon>
+    </button> -->
+</mat-toolbar>
+<mat-drawer-container [hasBackdrop]="isMobile()">
+  <mat-drawer #drawer position="start" [opened]="sidenavOpened()" [disableClose]="!isMobile()"
+    [mode]="isMobile() ? 'over' : 'side'" class="drawer border-r border-outline-variant border-gray-200!" style="width: 300px;">    
+      <nav class="flex-1 overflow-y-auto">
+        <mat-nav-list class="px-4!">
+
+          <mat-list-item routerLink="/dashboard/home" routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{exact: true}" (click)="navigateAndClose('/dashboard/home')">
+            <mat-icon matListItemIcon>home_outline</mat-icon>
+            <span matListItemTitle>Dashboard</span>
+          </mat-list-item>
+
+          <mat-list-item routerLink="/dashboard/users" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"
+            (click)="navigateAndClose('/dashboard/users')">
+            <mat-icon matListItemIcon>people_outline</mat-icon>
+            <span matListItemTitle>Users</span>
+          </mat-list-item>
+
+        </mat-nav-list>
+
+      </nav>
+  </mat-drawer>
+  <mat-drawer-content class="content-body" style="margin-left: 300px;">
+    <main class="h-[calc(100dvh-64px)] md:h-full relative mx-auto max-w-screen-2xl">
+        <div class="p-4 sm:px-6 sm:pb-10 sm:pt-10 lg:px-10 lg:pt-7">
+            <router-outlet />
+        </div>
+        
+    </main>
+  </mat-drawer-content>
+</mat-drawer-container>

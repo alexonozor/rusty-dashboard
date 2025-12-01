@@ -1,0 +1,123 @@
+<div class="p-6 min-h-screen">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="text-4xl font-bold text-slate-900 dark:text-white mb-2">
+        Users
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400">
+        Manage and view all users in your system
+      </p>
+    </div>
+
+  
+        <div class="overflow-x-auto overflow-hidden rounded-lg border border-outline">
+          <table mat-table [dataSource]="dataSource" class="w-full">
+            <!-- Avatar Column -->
+            <ng-container matColumnDef="avatar">
+              <th mat-header-cell *matHeaderCellDef class="px-6 py-3 text-left">User</th>
+              <td mat-cell *matCellDef="let user" class="px-6 py-4">
+                <img 
+                  [src]="user.avatar" 
+                  [alt]="user.name"
+                  class="w-10 h-10 rounded-full"
+                />
+              </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef class="px-6 py-3 text-left">Name</th>
+              <td mat-cell *matCellDef="let user" class="px-6 py-4">
+                <p class="font-medium text-slate-900 dark:text-white">{{ user.name }}</p>
+              </td>
+            </ng-container>
+
+            <!-- Email Column -->
+            <ng-container matColumnDef="email">
+              <th mat-header-cell *matHeaderCellDef class="px-6 py-3 text-left">Email</th>
+              <td mat-cell *matCellDef="let user" class="px-6 py-4">
+                <p class="text-slate-600 dark:text-slate-400 text-sm">{{ user.email }}</p>
+              </td>
+            </ng-container>
+
+            <!-- Role Column -->
+            <ng-container matColumnDef="role">
+              <th mat-header-cell *matHeaderCellDef class="px-6 py-3 text-left">Role</th>
+              <td mat-cell *matCellDef="let user" class="px-6 py-4">
+                <span class="inline-flex px-3 py-1 rounded-full text-sm font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300">
+                  {{ user.role }}
+                </span>
+              </td>
+            </ng-container>
+
+            <!-- Status Column -->
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef class="px-6 py-3 text-left">Status</th>
+              <td mat-cell *matCellDef="let user" class="px-6 py-4">
+                <span 
+                  class="inline-flex px-3 py-1 rounded-full text-sm font-medium capitalize"
+                  [ngClass]="getStatusColor(user.status)"
+                >
+                  {{ user.status }}
+                </span>
+              </td>
+            </ng-container>
+
+            <!-- Join Date Column -->
+            <ng-container matColumnDef="joinDate">
+              <th mat-header-cell *matHeaderCellDef class="px-6 py-3 text-left">Join Date</th>
+              <td mat-cell *matCellDef="let user" class="px-6 py-4">
+                <p class="text-slate-600 dark:text-slate-400 text-sm">{{ user.joinDate }}</p>
+              </td>
+            </ng-container>
+
+            <!-- Actions Column -->
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef class="px-6 py-3 text-center">Actions</th>
+              <td mat-cell *matCellDef="let user" class="px-6 py-4 text-center">
+                <button 
+                  mat-icon-button 
+                  [matMenuTriggerFor]="userMenu"
+                  class="hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg"
+                >
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #userMenu="matMenu">
+                  <button mat-menu-item (click)="onEdit(user)">
+                    <mat-icon>visibility</mat-icon>
+                    <span>View Profile</span>
+                  </button>
+                  <button mat-menu-item (click)="onEdit(user)">
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit</span>
+                  </button>
+                  <button mat-menu-item (click)="onDelete(user)">
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete</span>
+                  </button>
+                </mat-menu>
+              </td>
+            </ng-container>
+
+            <!-- Header Row -->
+            <tr mat-header-row *matHeaderRowDef="displayedColumns" class="border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50"></tr>
+            
+            <!-- Data Rows -->
+            <tr 
+              mat-row 
+              *matRowDef="let row; columns: displayedColumns;" 
+              class="border-b border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
+            ></tr>
+          </table>
+          <mat-paginator 
+          [pageSizeOptions]="[10, 20, 30, 40]" 
+          showFirstLastButtons 
+          aria-label="Select page of users">
+        </mat-paginator>
+        </div>
+        <!-- Paginator -->
+        
+      </div>
+  </div>
+

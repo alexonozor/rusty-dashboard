@@ -1,0 +1,57 @@
+:host {
+  display: block;
+}
+
+// Material card styling for better integration with theme
+::ng-deep {
+  mat-card {
+    background-color: var(--mat-sys-surface-container);
+    color: var(--mat-sys-on-surface);
+
+    mat-card-header {
+      padding: 1rem;
+      border-bottom: 1px solid var(--mat-sys-outline-variant);
+    }
+
+    mat-card-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--mat-sys-on-surface);
+      margin: 0;
+    }
+
+    mat-card-content {
+      padding: 1.5rem;
+      color: var(--mat-sys-on-surface);
+    }
+  }
+
+  // Button styling
+  .mat-mdc-button {
+    &.mat-primary {
+      color: var(--mat-sys-primary);
+
+      &:hover {
+        background-color: rgba(var(--mat-sys-primary-rgb), 0.04);
+      }
+    }
+  }
+
+  // Icon styling
+  mat-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+// Progress bar animation
+@keyframes slideIn {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+

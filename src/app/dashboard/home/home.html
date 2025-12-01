@@ -1,0 +1,129 @@
+<div class="min-h-screen p-6">
+  <div class="max-w-6xl mx-auto">
+    <!-- Welcome Header -->
+    <mat-card  class="bg-white mb-12 p-3" appearance="outlined">
+      <div class="w-full flex items-center justify-between">
+        <div class="flex-1">
+          <h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">
+            Welcome back, {{ userName() }}!
+          </h1>
+          <p class="text-slate-600 dark:text-slate-400">
+            {{ currentDate() }}
+          </p>
+        </div>
+        <div class="text-right hidden sm:block">
+          <p class="text-2xl font-bold text-indigo-600 dark:text-indigo-400 font-mono">
+            {{ currentTime() }}
+          </p>
+        </div>
+      </div>
+    </mat-card>
+
+    <!-- Quick Stats Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      @for (stat of stats(); track stat.label) {
+        <mat-card appearance="outlined" class="shadow-sm border border-slate-200 dark:border-slate-700" appearance="outlined">
+          <mat-card-content class="pt-6">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <p class="text-slate-600 dark:text-slate-400 text-sm font-medium">
+                  {{ stat.label }}
+                </p>
+                <p class="text-3xl font-bold text-slate-900 dark:text-white mt-1">
+                  {{ stat.value }}
+                </p>
+              </div>
+              <div class="text-4xl" [class]="stat.color">
+                <mat-icon [innerHTML]="stat.icon"></mat-icon>
+              </div>
+            </div>
+            <mat-progress-bar 
+              mode="determinate" 
+              [value]="stat.progress"
+              class="mt-2"
+            ></mat-progress-bar>
+          </mat-card-content>
+        </mat-card>
+      }
+    </div>
+
+    <!-- Quick Actions Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+      <!-- Getting Started Card -->
+      <mat-card  appearance="outlined" class="lg:col-span-2">
+        <mat-card-header class="border-b">
+          <mat-card-title class="px-6 py-4 m-0">Getting Started</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list>
+            <mat-list-item>
+              <div matListItemTitle>Create Your First Project</div>
+              <div matListItemLine>Start by creating a new project to organize your work.</div>
+            </mat-list-item>
+            <mat-list-item>
+              <div matListItemTitle>Add Team Members</div>
+              <div matListItemLine>Collaborate with your team by inviting them to your projects.</div>
+            </mat-list-item>
+            <mat-list-item>
+              <div matListItemTitle>Start Building</div>
+              <div matListItemLine>Create tasks, assign them, and track progress in real-time.</div>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Quick Links Card -->
+      <mat-card appearance="outlined">
+        <mat-card-header class="border-b">
+          <mat-card-title class="px-6 py-4 m-0">Quick Links</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list>
+            <mat-list-item>
+              <mat-icon matListItemIcon>add_circle</mat-icon>
+              <div matListItemTitle>New Project</div>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon matListItemIcon>people</mat-icon>
+              <div matListItemTitle>Manage Team</div>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon matListItemIcon>settings</mat-icon>
+              <div matListItemTitle>Settings</div>
+            </mat-list-item>
+            <mat-list-item>
+              <mat-icon matListItemIcon>help</mat-icon>
+              <div matListItemTitle>Documentation</div>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Recent Activity Section -->
+    <mat-card  appearance="outlined">
+      <mat-card-header class="border-b">
+        <mat-card-title class="px-6 py-4 m-0">Recent Activity</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="!p-0">
+        <mat-list>
+          <mat-list-item>
+            <mat-icon matListItemIcon class="text-green-600 dark:text-green-400">check_circle</mat-icon>
+            <div matListItemTitle>Task completed</div>
+            <div matListItemLine>You completed "Implement dashboard UI" • Today</div>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon matListItemIcon class="text-blue-600 dark:text-blue-400">comment</mat-icon>
+            <div matListItemTitle>New comment on project</div>
+            <div matListItemLine>Sarah commented on "Rusty Dashboard" • Yesterday</div>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon matListItemIcon class="text-purple-600 dark:text-purple-400">person_add</mat-icon>
+            <div matListItemTitle>Team member added</div>
+            <div matListItemLine>John was added to your team • 2 days ago</div>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

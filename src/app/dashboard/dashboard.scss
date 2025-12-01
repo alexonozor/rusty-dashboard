@@ -1,0 +1,36 @@
+:host {
+  display: block;
+}
+
+.drawer {
+    height: calc(100vh - 64px); 
+    border-right: 1px solid var(--mat-sys-outline-variant);
+    width: 240px;
+    overflow: auto;
+    box-sizing: border-box;
+}
+
+.content-body {
+    height: calc(100vh - 64px);
+}
+
+.border-outline-variant {
+  border-color: var(--md-sys-color-outline-variant);
+}
+
+
+::ng-deep {
+  .mat-mdc-list-item.active-link {
+    background-color: rgba(0, 0, 0, 0.08) !important;
+    
+    .mat-mdc-list-item-icon {
+      color: var(--mdc-theme-primary) !important;
+    }
+    
+    .mdc-list-item__primary-text {
+      color: var(--mdc-theme-primary) !important;
+      font-weight: 500 !important;
+    }
+  }
+
+}

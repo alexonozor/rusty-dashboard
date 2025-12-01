@@ -1,0 +1,120 @@
+<div class="flex items-center justify-center min-h-screen  px-4 py-8">
+  <mat-card class="w-full max-w-md" appearance="outlined">
+    <mat-card-content class="pt-8">
+      <!-- Header -->
+      <div class="mb-8 text-center">
+        <h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">
+          Create Account
+        </h1>
+        <p class="text-slate-600 dark:text-slate-400">
+          Sign up to get started
+        </p>
+      </div>
+
+      <!-- Signup Form -->
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <!-- Username Field -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Username</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="username"
+            placeholder="Choose a username"
+          />
+          @if (username?.hasError('required') && isSubmitted()) {
+            <mat-error>Username is required</mat-error>
+          }
+          @if (username?.hasError('minlength') && isSubmitted()) {
+            <mat-error>Username must be at least 3 characters</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Email Field -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            formControlName="email"
+            placeholder="you@example.com"
+          />
+          @if (email?.hasError('required') && isSubmitted()) {
+            <mat-error>Email is required</mat-error>
+          }
+          @if (email?.hasError('email') && isSubmitted()) {
+            <mat-error>Please enter a valid email</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Password Field -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            placeholder="Enter your password"
+          />
+          @if (password?.hasError('required') && isSubmitted()) {
+            <mat-error>Password is required</mat-error>
+          }
+          @if (password?.hasError('minlength') && isSubmitted()) {
+            <mat-error>Password must be at least 6 characters</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Repeat Password Field -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Repeat Password</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="repeatPassword"
+            placeholder="Confirm your password"
+          />
+          @if (repeatPassword?.hasError('required') && isSubmitted()) {
+            <mat-error>Please confirm your password</mat-error>
+          }
+          @if (signupForm.hasError('passwordMismatch') && isSubmitted() && repeatPassword?.touched) {
+            <mat-error>Passwords do not match</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Submit Button -->
+        <button
+          matButton="filled"
+          type="submit"
+          class="w-full mt-8"
+          color="primary"
+          [disabled]="isLoading()"
+        >
+          @if (!isLoading()) {
+            <span>Create Account</span>
+          }
+          @if (isLoading()) {
+            <span class="flex items-center justify-center gap-2">
+              <span
+                class="inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-r-transparent"
+              ></span>
+              Creating account...
+            </span>
+          }
+        </button>
+      </form>
+
+      <!-- Footer with login link -->
+      <div class="mt-8 text-center text-sm text-slate-600 dark:text-slate-400">
+        <p>
+          Already have an account?
+          <a 
+            routerLink="/auth/login"
+            class="font-semibold text-slate-900 dark:text-white hover:underline"
+          >
+            Sign in
+          </a>
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

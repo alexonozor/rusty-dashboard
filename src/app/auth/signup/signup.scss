@@ -1,0 +1,53 @@
+:host {
+  display: block;
+}
+
+// Angular Material form field customization using system variables
+::ng-deep {
+  // Customize the outline appearance for better integration with Material Design 3
+  .mat-mdc-form-field-appearance-outline {
+    .mdc-notched-outline__leading,
+    .mdc-notched-outline__notch,
+    .mdc-notched-outline__trailing {
+      border-color: var(--mat-sys-outline);
+    }
+
+    &.mat-focused {
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__notch,
+      .mdc-notched-outline__trailing {
+        border-color: var(--mat-sys-primary);
+      }
+    }
+
+    &.mat-form-field-invalid {
+      .mdc-notched-outline__leading,
+      .mdc-notched-outline__notch,
+      .mdc-notched-outline__trailing {
+        border-color: var(--mat-sys-error);
+      }
+    }
+  }
+
+  // Customize the input text color for dark mode
+  .mat-mdc-form-field-appearance-outline .mdc-text-field--filled {
+    background-color: var(--mat-sys-surface);
+
+    .mdc-text-field__input {
+      color: var(--mat-sys-on-surface);
+
+      &::placeholder {
+        color: var(--mat-sys-on-surface-variant);
+      }
+    }
+  }
+}
+
+// Ensure proper spacing for Material form fields
+mat-form-field {
+  display: block;
+
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}

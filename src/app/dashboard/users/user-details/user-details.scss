@@ -1,0 +1,67 @@
+:host {
+  display: block;
+}
+
+// Material card styling
+::ng-deep {
+  mat-card {
+    background-color: var(--mat-sys-surface-container);
+    color: var(--mat-sys-on-surface);
+
+    mat-card-header {
+      padding: 0;
+      border-bottom: 1px solid var(--mat-sys-outline-variant);
+    }
+
+    mat-card-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--mat-sys-on-surface);
+      margin: 0;
+    }
+
+    mat-card-content {
+      padding: 1.5rem;
+      color: var(--mat-sys-on-surface);
+    }
+  }
+
+  // Tab styling
+  .mat-mdc-tab-header {
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
+  }
+
+  // Chips styling
+  mat-chip {
+    font-size: 0.75rem !important;
+  }
+
+  // List item styling
+  mat-list-item {
+    height: auto;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--mat-sys-outline-variant);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  // Button styling
+  .mat-mdc-button {
+    &.mat-primary {
+      color: var(--mat-sys-primary);
+
+      &:hover {
+        background-color: rgba(var(--mat-sys-primary-rgb), 0.04);
+      }
+    }
+  }
+}
+
+// Custom calendar grid
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.5rem;
+}

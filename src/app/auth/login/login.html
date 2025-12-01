@@ -1,0 +1,87 @@
+<div class="flex items-center justify-center min-h-screen px-4">
+  <mat-card class="w-full max-w-md" appearance="outlined">
+    <mat-card-content class="pt-8">
+      <!-- Header -->
+      <div class="mb-8 text-center">
+        <h1 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">
+          Welcome Back
+        </h1>
+        <p class="text-slate-600 dark:text-slate-400">
+          Sign in to your account to continue
+        </p>
+      </div>
+
+      <!-- Login Form -->
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <!-- Email Field -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            formControlName="email"
+            placeholder="you@example.com"
+          />
+          @if (email?.hasError('required') && isSubmitted()) {
+            <mat-error>Email is required</mat-error>
+          }
+          @if (email?.hasError('email') && isSubmitted()) {
+            <mat-error>Please enter a valid email</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Password Field -->
+        <mat-form-field appearance="outline" class="w-full">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            formControlName="password"
+            placeholder="Enter your password"
+          />
+          @if (password?.hasError('required') && isSubmitted()) {
+            <mat-error>Password is required</mat-error>
+          }
+          @if (password?.hasError('minlength') && isSubmitted()) {
+            <mat-error>Password must be at least 6 characters</mat-error>
+          }
+        </mat-form-field>
+
+        <!-- Submit Button -->
+        <button
+          matButton="filled"
+          type="submit"
+          color="primary"
+          class="w-full py-3 mt-8"
+          [disabled]="isLoading()"
+        >
+          @if (!isLoading()) {
+            <span>Sign In</span>
+          }
+          @if (isLoading()) {
+            <span class="flex items-center justify-center gap-2">
+              <span
+                class="inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-r-transparent"
+              ></span>
+              Signing in...
+            </span>
+          }
+        </button>
+      </form>
+
+      <!-- Footer -->
+      <div class="mt-8 text-center text-sm text-slate-600 dark:text-slate-400">
+        <p class="mb-4">Demo credentials: any email and password (min 6 chars)</p>
+        <p>
+          Don't have an account?
+          <a 
+            routerLink="/auth/signup"
+            class="font-semibold text-slate-900 dark:text-white hover:underline"
+          >
+            Sign up
+          </a>
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
