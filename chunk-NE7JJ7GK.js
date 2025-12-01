@@ -1,0 +1,1 @@
+import"./chunk-EQDQRRRY.js";var o=[{path:"",loadComponent:()=>import("./chunk-AUMN63JA.js").then(t=>t.Users),children:[{path:"list",loadComponent:()=>import("./chunk-EDOPP5IN.js").then(t=>t.ListUsers)},{path:":id/profile",loadComponent:()=>import("./chunk-GOZ4RWUO.js").then(t=>t.UserDetails)},{path:"",redirectTo:"list",pathMatch:"full"}]}];export{o as USER_ROUTES};

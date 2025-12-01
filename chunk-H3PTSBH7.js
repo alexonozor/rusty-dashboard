@@ -1,0 +1,1 @@
+import"./chunk-EQDQRRRY.js";var t=[{path:"",loadComponent:()=>import("./chunk-ZE46SC6N.js").then(o=>o.Dashboard),children:[{path:"home",loadComponent:()=>import("./chunk-MGRFIFWS.js").then(o=>o.Home)},{path:"users",loadChildren:()=>import("./chunk-NE7JJ7GK.js").then(o=>o.USER_ROUTES)},{path:"",redirectTo:"home",pathMatch:"full"}]}];export{t as DASHBOARD_ROUTES};
