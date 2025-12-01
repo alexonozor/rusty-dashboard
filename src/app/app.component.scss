@@ -1,0 +1,12 @@
+.root-progress-bar {
+  --ng-progress-thickness: 3;
+  ::ng-deep {
+    .ng-bar-placeholder {
+      background-color: lightgray;
+    }
+    .ng-bar {
+      background: var(--mat-sys-primary);
+    
+    }
+  }
+}
