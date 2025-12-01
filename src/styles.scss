@@ -2,7 +2,13 @@
 @use "tailwindcss";
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+        font-family: var(--mat-sys-body-large-font), sans-serif;
+    background-color: var(--mat-sys-surface);
+    color: var(--mat-sys-on-surface);
+}
 
 .mdc-notched-outline__notch {
     border-right: none !important;

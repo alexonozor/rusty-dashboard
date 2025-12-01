@@ -1,19 +1,40 @@
-<mat-toolbar class="mat-toolbar top-0 sticky z-10 space-x-2 shadow-sm border-b border-gray-200! dark:border-slate-700 bg-white dark:bg-slate-900 h-16 px-4">
+<mat-toolbar class="mat-toolbar top-0 sticky z-10 space-x-2  border-b border-outline-variant! h-16 px-4">
     <button matIconButton (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
     <span>Dashboard</span>
     <span class="flex-1"></span>
-    <!-- <button matIconButton>
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button matIconButton>
-      <mat-icon>share</mat-icon>
-    </button> -->
+    <!-- Avatar with menu -->
+    <div class="flex items-center gap-2">
+      <button mat-icon-button [matMenuTriggerFor]="userMenu" class="flex items-center gap-2 px-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+        <img [src]="currentUser().avatar" [alt]="currentUser().name" class="w-8 h-8 rounded-full">
+        <!-- <span class="hidden sm:inline text-sm font-medium">{{ currentUser().name }}</span> -->
+      </button>
+    </div>
+    
+    <mat-menu #userMenu="matMenu">
+      <div class="px-4 py-2 border-b border-outline-variant!">
+        <p class="text-sm font-semibold">{{ currentUser().name }}</p>
+        <p class="text-xs text-slate-500 dark:text-slate-400">{{ currentUser().email }}</p>
+      </div>
+      <button mat-menu-item>
+        <mat-icon>person_outline</mat-icon>
+        <span>Profile</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>settings_outline</mat-icon>
+        <span>Settings</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
 </mat-toolbar>
 <mat-drawer-container [hasBackdrop]="isMobile()">
   <mat-drawer #drawer position="start" [opened]="sidenavOpened()" [disableClose]="!isMobile()"
-    [mode]="isMobile() ? 'over' : 'side'" class="drawer border-r border-outline-variant border-gray-200!" style="width: 300px;">    
+    [mode]="isMobile() ? 'over' : 'side'" class="drawer border-r rounded-none! border-outline-variant!">    
       <nav class="flex-1 overflow-y-auto">
         <mat-nav-list class="px-4!">
 
@@ -23,7 +44,7 @@
             <span matListItemTitle>Dashboard</span>
           </mat-list-item>
 
-          <mat-list-item routerLink="/dashboard/users" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"
+          <mat-list-item routerLink="/dashboard/users" routerLinkActive="active-link"
             (click)="navigateAndClose('/dashboard/users')">
             <mat-icon matListItemIcon>people_outline</mat-icon>
             <span matListItemTitle>Users</span>
@@ -33,12 +54,18 @@
 
       </nav>
   </mat-drawer>
-  <mat-drawer-content class="content-body" style="margin-left: 300px;">
+  <mat-drawer-content class="content-body">
     <main class="h-[calc(100dvh-64px)] md:h-full relative mx-auto max-w-screen-2xl">
         <div class="p-4 sm:px-6 sm:pb-10 sm:pt-10 lg:px-10 lg:pt-7">
             <router-outlet />
         </div>
         
     </main>
+
+    <!-- Chat Button - Bottom Right -->
+    <button mat-fab class="chat-fab" (click)="openChat()" 
+      matTooltip="Open Chat" matTooltipPosition="above">
+      <mat-icon>chat_bubble_outline</mat-icon>
+    </button>
   </mat-drawer-content>
 </mat-drawer-container>
